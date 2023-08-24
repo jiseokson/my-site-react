@@ -29,4 +29,4 @@ jobs:
 
       - name: Restart Nginx on EC2
         run: |
-          sudo systemctl restart nginx
+          ssh -i ${{ secrets.EC2_PRIVATE_KEY }} ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"
