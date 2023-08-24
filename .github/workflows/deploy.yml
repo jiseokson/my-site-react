@@ -1,4 +1,4 @@
-name: React Deploy
+name: Deploy to EC2
 
 on:
   push:
@@ -10,13 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Pull main branch
-        run: git pull origin main
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Install dependencies and build
         run: |
           npm install
           npm run build
+
+      - name: Copy build files to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }} # Add this secret in your repository settings
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: build/ # Adjust to your build output directory
+          target: /home/ubuntu/my-site-react/build # Adjust to your Nginx's HTML directory
 
       - name: Restart Nginx on EC2
         run: |
