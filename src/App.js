@@ -9,7 +9,7 @@ function Post() {
   const getPost = async () => {
     const response = await fetch("http://api.igoofficial.com/posts/");
     const json = await response.json();
-    setPost(json);
+    setPost(json[0]);
     setLoading(false);
   };
 
@@ -23,8 +23,8 @@ function Post() {
         <h1>loading...</h1>
       ) : (
         <div>
-          <h1>post.title</h1>
-          <p>post.content</p>
+          <h1>{post.title}</h1>
+          <p>{post.content}</p>
         </div>
       )}
     </div>
