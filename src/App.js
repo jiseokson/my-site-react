@@ -32,7 +32,7 @@ function Post() {
 function App() {
   return (
     <div>
-      <h1>Hello this is my site! 자동 배포도 설정함</h1>
+      <h1>이거 왜 안바뀜???????</h1>
       <Post />
     </div>
   );
