@@ -32,7 +32,7 @@ function Post() {
 function App() {
   return (
     <div>
-      <h1>done???????</h1>
+      <h1>Welcome, this is my site</h1>
       <Post />
     </div>
   );
